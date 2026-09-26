@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Explore the gallery of Cosmos College of Management and Technology.">
+
+    <title>Gallery | Cosmos College</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+
+        /* ==============================
+           GALLERY PAGE
+        ============================== */
+
+        .gallery-section {
+            padding: 80px 0;
+            background: #f7f9fc;
+        }
+
+        .gallery-heading {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        .gallery-heading h2 {
+            font-size: 36px;
+            margin: 10px 0 15px;
+        }
+
+        .gallery-heading h2 span {
+            color: #1769aa;
+        }
+
+        .gallery-heading p {
+            color: #666;
+            line-height: 1.7;
+        }
+
+
+        /* FILTER BUTTONS */
+
+        .gallery-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .filter-btn {
+            border: none;
+            padding: 11px 22px;
+            border-radius: 30px;
+            background: #e9eef5;
+            color: #333;
+            cursor: pointer;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #1769aa;
+            color: white;
+        }
+
+
+        /* GALLERY GRID */
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 22px;
+        }
+
+        .gallery-item {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+            border-radius: 12px;
+            background: white;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 25px 18px 18px;
+            color: white;
+            background: linear-gradient(
+                transparent,
+                rgba(0, 0, 0, 0.8)
+            );
+            transform: translateY(10px);
+            transition: 0.3s;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-overlay h3 {
+            margin: 0 0 5px;
+            font-size: 18px;
+        }
+
+        .gallery-overlay p {
+            margin: 0;
+            font-size: 13px;
+        }
+
+        .gallery-overlay i {
+            margin-right: 6px;
+        }
+
+
+        /* LIGHTBOX */
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.92);
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+        }
+
+        .lightbox.show {
+            display: flex;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 1000px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .lightbox img {
+            max-width: 100%;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .lightbox-caption {
+            color: white;
+            margin-top: 15px;
+            font-size: 18px;
+        }
+
+        .lightbox-close {
+            position: fixed;
+            top: 25px;
+            right: 35px;
+            color: white;
+            font-size: 35px;
+            cursor: pointer;
+            z-index: 10000;
+        }
+
+        .lightbox-prev,
+        .lightbox-next {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            background: rgba(255,255,255,0.15);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .lightbox-prev {
+            left: 25px;
+        }
+
+        .lightbox-next {
+            right: 25px;
+        }
+
+        .lightbox-prev:hover,
+        .lightbox-next:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+
+        /* RESPONSIVE */
+
+        @media (max-width: 1000px) {
+
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+        }
+
+        @media (max-width: 768px) {
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .gallery-heading h2 {
+                font-size: 30px;
+            }
+
+        }
+
+        @media (max-width: 500px) {
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-item {
+                height: 280px;
+            }
+
+            .lightbox-prev {
+                left: 10px;
+            }
+
+            .lightbox-next {
+                right: 10px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ==============================
+     HEADER
+============================== -->
+
+<header class="header">
+
+    <div class="top-bar">
+
+        <div class="container top-content">
+
+            <div>
+
+                <span>
+                    <i class="fa-solid fa-phone"></i>
+                    Tel: 5382962, 9705777002, 9705440004, 9861741390
+                </span>
+
+                <span>
+                    <i class="fa-solid fa-envelope"></i>
+                    admission@cosmoscollege.edu.np
+                </span>
+
+            </div>
+
+            <div class="social-icons">
+
+                <a href="#">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+
+                <a href="#">
+                    <i class="fab fa-instagram"></i>
+                </a>
+
+                <a href="#">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <nav class="navbar">
+
+        <div class="container nav-container">
+
+            <a href="index.html" class="logo">
+
+                <img src="C:\Users\A plus\OneDrive\Desktop\278995656_367449892068865_4871846465309183999_n.png"
+                     alt="Cosmos College Logo"
+                     class="college-logo">
+
+                <div>
+
+                    <h2>Cosmos College of Management and Technology</h2>
+
+                    <span>
+                        Excellence in Education
+                    </span>
+
+                </div>
+
+            </a>
+
+
+            <button class="menu-toggle"
+                    id="menuToggle">
+
+                <i class="fa-solid fa-bars"></i>
+
+            </button>
+
+
+            <ul class="nav-links"
+                id="navLinks">
+
+                <li>
+                    <a href="index.html">
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a href="about.html">
+                        About
+                    </a>
+                </li>
+
+                <li>
+                    <a href="courses.html">
+                        Programs
+                    </a>
+                </li>
+
+                <li>
+                    <a href="faculty.html">
+                        Faculty
+                    </a>
+                </li>
+
+                <li>
+                    <a href="facilities.html">
+                        Facilities
+                    </a>
+                </li>
+
+                <li>
+                    <a href="events.html">
+                        Events
+                    </a>
+                </li>
+
+                <li>
+                    <a href="notice.html">
+                        Notice
+                    </a>
+                </li>
+
+                <li>
+                    <a href="gallery.html"
+                       class="active">
+                        Gallery
+                    </a>
+                </li>
+
+                <li>
+                    <a href="contact.html">
+                        Contact
+                    </a>
+                </li>
+
+                <li>
+
+                    <a href="admission.html"
+                       class="admission-btn">
+
+                        Apply Now
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+    </nav>
+
+</header>
+
+
+
+<!-- ==============================
+     PAGE HERO
+============================== -->
+
+<section class="page-hero">
+
+    <div class="container">
+
+        <span>Our Memories</span>
+
+        <h1>College Gallery</h1>
+
+        <p>
+            Explore moments from academic activities,
+            events, campus life and student activities.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==============================
+     GALLERY
+============================== -->
+
+<section class="gallery-section">
+
+    <div class="container">
+
+
+        <div class="gallery-heading">
+
+            <span class="section-tag">
+                Campus Life
+            </span>
+
+            <h2>
+                Explore Our
+                <span>Gallery</span>
+            </h2>
+
+            <p>
+                Take a look at the learning environment,
+                events, activities and memorable moments
+                of Cosmos College.
+            </p>
+
+        </div>
+
+
+
+        <!-- FILTERS -->
+
+        <div class="gallery-filters">
+
+            <button class="filter-btn active"
+                    data-filter="all">
+
+                All
+
+            </button>
+
+            <button class="filter-btn"
+                    data-filter="campus">
+
+                Campus
+
+            </button>
+
+            <button class="filter-btn"
+                    data-filter="events">
+
+                Events
+
+            </button>
+
+            <button class="filter-btn"
+                    data-filter="students">
+
+                Students
+
+            </button>
+
+            <button class="filter-btn"
+                    data-filter="activities">
+
+                Activities
+
+            </button>
+
+        </div>
+
+
+
+        <!-- GALLERY GRID -->
+
+        <div class="gallery-grid">
+
+
+            <!-- IMAGE 1 -->
+
+            <div class="gallery-item"
+                 data-category="campus"
+                 data-title="College Campus">
+
+                <img src="images/gallery1.jpg"
+                     alt="College Campus">
+
+                <div class="gallery-overlay">
+
+                    <h3>
+                        <i class="fa-solid fa-building"></i>
+                        College Campus
+                    </h3>
+
+                    <p>
+                        Our college environment
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- IMAGE 2 -->
+
+            <div class="gallery-item"
+                 data-category="events"
+                 data-title="College Event">
+
+                <img src="images/gallery2.jpg"
+                     alt="College Event">
+
+                <div class="gallery-overlay">
+
+                    <h3>
+                        <i class="fa-solid fa-calendar-days"></i>
+                        College Event
+                    </h3>
+
+                    <p>
+                        Memorable college event
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- IMAGE 3 -->
+
+            <div class="gallery-item"
+                 data-category="students"
+                 data-title="Student Activities">
+
+                <img src="images/gallery3.jpg"
+                     alt="Student Activities">
+
+                <div class="gallery-overlay">
+
+                    <h3>
+                        <i class="fa-solid fa-users"></i>
+                        Student Activities
+                    </h3>
+
+                    <p>
+                        Students participating together
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- IMAGE 4 -->
+
+            <div class="gallery-item"
+                 data-category="activities"
+                 data-title="Academic Activities">
+
+                <img src="images/gallery4.jpg"
+                     alt="Academic Activities">
+
+                <div class="gallery-overlay">
+
+                    <h3>
+                        <i class="fa-solid fa-book"></i>
+                        Academic Activities
+                    </h3>
+
+                    <p>
+                        Learning beyond the classroom
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- IMAGE 5 -->
+
+            <div class="gallery-item"
+                 data-category="campus"
+                 data-title="College Facilities">
+
+                <img src="images/gallery5.jpg"
+                     alt="College Facilities">
+
+                <div class="gallery-overlay">
+
+                    <h3>
+                        <i class="fa-solid fa-school"></i>
+                        College Facilities
+                    </h3>
+
+                    <p>
+                        Our learning facilities
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- IMAGE 6 -->
+
+            <div class="gallery-item"
+                 data-category="events"
+                 data-title="College Program">
+
+                <img src="images/gallery6.jpg"
+                     alt="College Program">
+
+                <div class="gallery-overlay">
+
+                    <h3>
+                        <i class="fa-solid fa-microphone"></i>
+                        College Program
+                    </h3>
+
+                    <p>
+                        Programs and presentations
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- IMAGE 7 -->
+
+            <div class="gallery-item"
+                 data-category="students"
+                 data-title="Student Community">
+
+                <img src="images/gallery7.jpg"
+                     alt="Student Community">
+
+                <div class="gallery-overlay">
+
+                    <h3>
+                        <i class="fa-solid fa-user-group"></i>
+                        Student Community
+                    </h3>
+
+                    <p>
+                        Students and friends
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- IMAGE 8 -->
+
+            <div class="gallery-item"
+                 data-category="activities"
+                 data-title="Student Activities">
+
+                <img src="images/gallery8.jpg"
+                     alt="Student Activities">
+
+                <div class="gallery-overlay">
+
+                    <h3>
+                        <i class="fa-solid fa-lightbulb"></i>
+                        Student Activities
+                    </h3>
+
+                    <p>
+                        Creative and practical learning
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==============================
+     LIGHTBOX
+============================== -->
+
+<div class="lightbox"
+     id="lightbox">
+
+    <span class="lightbox-close"
+          id="lightboxClose">
+
+        &times;
+
+    </span>
+
+
+    <button class="lightbox-prev"
+            id="lightboxPrev">
+
+        <i class="fa-solid fa-chevron-left"></i>
+
+    </button>
+
+
+    <div class="lightbox-content">
+
+        <img id="lightboxImage"
+             src=""
+             alt="Gallery Image">
+
+        <div class="lightbox-caption"
+             id="lightboxCaption">
+
+        </div>
+
+    </div>
+
+
+    <button class="lightbox-next"
+            id="lightboxNext">
+
+        <i class="fa-solid fa-chevron-right"></i>
+
+    </button>
+
+</div>
+
+
+
+<!-- ==============================
+     FOOTER
+============================== -->
+
+<footer class="footer">
+
+    <div class="container footer-grid">
+
+
+        <div class="footer-about">
+
+            <a href="index.html"
+               class="footer-logo">
+
+                <img src="C:\Users\A plus\OneDrive\Desktop\278995656_367449892068865_4871846465309183999_n.png"
+                     alt="Cosmos College Logo"
+                     class="footer-college-logo">
+
+                <div>
+
+                    <h2>Cosmos College</h2>
+
+                    <span>
+                        Excellence in Education
+                    </span>
+
+                </div>
+
+            </a>
+
+            <p>
+                Empowering students through quality education,
+                innovation and practical learning.
+            </p>
+
+        </div>
+
+
+
+        <div class="footer-links">
+
+            <h3>Quick Links</h3>
+
+            <a href="about.html">
+                About Us
+            </a>
+
+            <a href="courses.html">
+                Programs
+            </a>
+
+            <a href="faculty.html">
+                Faculty
+            </a>
+
+            <a href="facilities.html">
+                Facilities
+            </a>
+
+            <a href="admission.html">
+                Admission
+            </a>
+
+        </div>
+
+
+
+        <div class="footer-links">
+
+            <h3>Useful Links</h3>
+
+            <a href="notice.html">
+                Notices
+            </a>
+
+            <a href="events.html">
+                Events
+            </a>
+
+            <a href="gallery.html">
+                Gallery
+            </a>
+
+            <a href="contact.html">
+                Contact
+            </a>
+
+            <a href="student/login.php">
+                Student Login
+            </a>
+
+        </div>
+
+
+
+        <div class="footer-contact">
+
+            <h3>Contact Us</h3>
+
+            <p>
+                <i class="fa-solid fa-location-dot"></i>
+                Kathmandu, Nepal
+            </p>
+
+            <p>
+                <i class="fa-solid fa-phone"></i>
+                +977-9705777002
+            </p>
+
+            <p>
+                <i class="fa-solid fa-envelope"></i>
+                admission@cosmoscollege.edu.np
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <div class="container">
+
+            <p>
+                © 2026 Cosmos College.
+                All Rights Reserved.
+            </p>
+
+            <p>
+                Designed & Developed by
+                <strong>Amish Chaudhary</strong>
+            </p>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+
+<!-- BACK TO TOP -->
+
+<button id="backToTop"
+        class="back-to-top">
+
+    <i class="fa-solid fa-arrow-up"></i>
+
+</button>
+
+
+
+<!-- ==============================
+     GALLERY JAVASCRIPT
+============================== -->
+
+<script>
+
+    const galleryItems =
+        Array.from(document.querySelectorAll(".gallery-item"));
+
+    const filterButtons =
+        document.querySelectorAll(".filter-btn");
+
+    const lightbox =
+        document.getElementById("lightbox");
+
+    const lightboxImage =
+        document.getElementById("lightboxImage");
+
+    const lightboxCaption =
+        document.getElementById("lightboxCaption");
+
+    const closeButton =
+        document.getElementById("lightboxClose");
+
+    const previousButton =
+        document.getElementById("lightboxPrev");
+
+    const nextButton =
+        document.getElementById("lightboxNext");
+
+
+    let visibleItems = [...galleryItems];
+
+    let currentIndex = 0;
+
+
+
+    /* ==========================
+       FILTER
+    ========================== */
+
+    filterButtons.forEach(button => {
+
+        button.addEventListener("click", () => {
+
+            filterButtons.forEach(btn => {
+                btn.classList.remove("active");
+            });
+
+            button.classList.add("active");
+
+            const filter =
+                button.getAttribute("data-filter");
+
+            galleryItems.forEach(item => {
+
+                const category =
+                    item.getAttribute("data-category");
+
+                if (filter === "all" ||
+                    category === filter) {
+
+                    item.style.display = "block";
+
+                } else {
+
+                    item.style.display = "none";
+
+                }
+
+            });
+
+            visibleItems = galleryItems.filter(item => {
+
+                const category =
+                    item.getAttribute("data-category");
+
+                return filter === "all" ||
+                       category === filter;
+
+            });
+
+        });
+
+    });
+
+
+
+    /* ==========================
+       OPEN LIGHTBOX
+    ========================== */
+
+    galleryItems.forEach(item => {
+
+        item.addEventListener("click", () => {
+
+            visibleItems =
+                galleryItems.filter(
+                    galleryItem =>
+                    galleryItem.style.display !== "none"
+                );
+
+            currentIndex =
+                visibleItems.indexOf(item);
+
+            openLightbox();
+
+        });
+
+    });
+
+
+
+    function openLightbox() {
+
+        const item =
+            visibleItems[currentIndex];
+
+        const image =
+            item.querySelector("img");
+
+        const title =
+            item.getAttribute("data-title");
+
+        lightboxImage.src = image.src;
+
+        lightboxImage.alt = image.alt;
+
+        lightboxCaption.textContent = title;
+
+        lightbox.classList.add("show");
+
+        document.body.style.overflow = "hidden";
+
+    }
+
+
+
+    /* ==========================
+       CLOSE LIGHTBOX
+    ========================== */
+
+    function closeLightbox() {
+
+        lightbox.classList.remove("show");
+
+        document.body.style.overflow = "";
+
+    }
+
+
+    closeButton.addEventListener(
+        "click",
+        closeLightbox
+    );
+
+
+
+    /* ==========================
+       NEXT IMAGE
+    ========================== */
+
+    nextButton.addEventListener("click", () => {
+
+        currentIndex++;
+
+        if (currentIndex >= visibleItems.length) {
+
+            currentIndex = 0;
+
+        }
+
+        openLightbox();
+
+    });
+
+
+
+    /* ==========================
+       PREVIOUS IMAGE
+    ========================== */
+
+    previousButton.addEventListener("click", () => {
+
+        currentIndex--;
+
+        if (currentIndex < 0) {
+
+            currentIndex =
+                visibleItems.length - 1;
+
+        }
+
+        openLightbox();
+
+    });
+
+
+
+    /* ==========================
+       CLOSE BY BACKGROUND
+    ========================== */
+
+    lightbox.addEventListener("click", event => {
+
+        if (event.target === lightbox) {
+
+            closeLightbox();
+
+        }
+
+    });
+
+
+
+    /* ==========================
+       KEYBOARD CONTROLS
+    ========================== */
+
+    document.addEventListener("keydown", event => {
+
+        if (!lightbox.classList.contains("show")) {
+            return;
+        }
+
+        if (event.key === "Escape") {
+
+            closeLightbox();
+
+        }
+
+        if (event.key === "ArrowRight") {
+
+            nextButton.click();
+
+        }
+
+        if (event.key === "ArrowLeft") {
+
+            previousButton.click();
+
+        }
+
+    });
+
+</script>
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,373 @@
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1000px) {
+
+    /* NAVIGATION */
+    .nav-links {
+        gap: 15px;
+    }
+
+    .nav-menu {
+        margin-left: auto;
+    }
+
+    /* QUICK INFO */
+    .quick-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* PROGRAMS */
+    .program-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* WHY CHOOSE US */
+    .why-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* ABOUT */
+    .about-grid {
+        gap: 40px;
+    }
+
+    /* FOOTER */
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* FACULTY */
+    .faculty-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* EVENTS */
+    .event-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+
+    /* TOP BAR */
+    .top-bar {
+        display: none;
+    }
+
+
+    /* NAVIGATION */
+
+    .nav-container {
+        min-height: 70px;
+        display: flex;
+        align-items: Right;
+    }
+
+    /* Keeps menu button on the right */
+    .nav-menu {
+        margin-left: auto;
+        display: flex;
+        align-items: Right;
+    }
+
+    .menu-toggle {
+        display: block;
+        cursor: pointer;
+    }
+
+    .nav-links {
+        position: absolute;
+
+        top: 70px;
+        left: 0;
+
+        width: 100%;
+
+        background: #ffffff;
+
+        flex-direction: column;
+        align-items: stretch;
+
+        gap: 0;
+
+        padding: 10px 5%;
+
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+
+        max-height: 0;
+        overflow: hidden;
+
+        transition: max-height 0.3s ease;
+    }
+
+    .nav-links.show {
+        max-height: 500px;
+    }
+
+    .nav-links li {
+        border-bottom: 1px solid #eee;
+    }
+
+    .nav-links a {
+        display: block;
+        padding: 12px 0;
+    }
+
+    .admission-btn {
+        margin: 8px 0;
+        text-align: center;
+    }
+
+
+    /* HERO */
+
+    .hero {
+        min-height: 600px;
+    }
+
+    .hero h1 {
+        font-size: 45px;
+    }
+
+    .hero p {
+        font-size: 15px;
+    }
+
+
+    /* QUICK INFO */
+
+    .quick-info {
+        margin-top: 0;
+    }
+
+    .quick-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .quick-card {
+        border-right: none;
+        border-bottom: 1px solid #eee;
+    }
+
+
+    /* ABOUT */
+
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-image img {
+        height: 350px;
+    }
+
+    .experience-box {
+        right: 10px;
+    }
+
+
+    /* PROGRAMS */
+
+    .program-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    /* STATS */
+
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+    }
+
+    .stat-item {
+        border-right: none;
+    }
+
+
+    /* WHY CHOOSE US */
+
+    .why-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    /* CTA */
+
+    .cta-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+
+    /* FOOTER */
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+    .footer-bottom .container {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+
+    /* PAGE HERO */
+
+    .page-hero {
+        padding: 70px 0;
+    }
+
+    .page-hero h1 {
+        font-size: 38px;
+    }
+
+
+    /* FACULTY */
+
+    .faculty-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    /* FACILITIES */
+
+    .facility-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    /* EVENTS */
+
+    .event-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    /* FORMS */
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    /* CONTACT */
+
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .contact-info h2 {
+        font-size: 32px;
+    }
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+    /* CONTAINER */
+
+    .container {
+        width: 92%;
+    }
+
+
+    /* NAVIGATION */
+
+    .nav-container {
+        min-height: 65px;
+    }
+
+    .nav-links {
+        top: 65px;
+        padding: 10px 4%;
+    }
+
+
+    /* SECTION */
+
+    .section {
+        padding: 65px 0;
+    }
+
+
+    /* HERO */
+
+    .hero h1 {
+        font-size: 38px;
+    }
+
+
+    /* HERO BUTTONS */
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+
+    /* HEADINGS */
+
+    .section-heading h2,
+    .about-content h2 {
+        font-size: 32px;
+    }
+
+
+    /* ABOUT POINTS */
+
+    .about-points {
+        grid-template-columns: 1fr;
+    }
+
+
+    /* STATS */
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    /* NOTICES */
+
+    .notice-item {
+        align-items: flex-start;
+    }
+
+    .notice-item > i {
+        display: none;
+    }
+
+
+    /* FACULTY */
+
+    .faculty-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    /* EVENTS */
+
+    .event-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    /* CONTACT */
+
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+}
